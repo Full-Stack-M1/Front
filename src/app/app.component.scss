@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+//retirer le margin du body
+body {
+    margin: 0px !important;
+}
