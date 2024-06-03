@@ -3,4 +3,26 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-image: url('../../../assets/images/Home1.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero-text {
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    text-shadow: 5px 5px black;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    border: solid black;
+    border-radius: 5px;
+    padding: 5px;
+    background: rgb(80, 80, 80, 0.8);
+    // background-color: gray, 0.5;
+    // opacity: 0.5;
 }

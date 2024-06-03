@@ -6,7 +6,8 @@
         padding: 0px;
         transition: all 0.3s ease-in-out;
         border-bottom: 1px solid #000000;
-        background-color: #e3e3e3;
+        // background-color: #e3e3e3;
+        background: linear-gradient(135deg, #888 35%, #fff);
         &.fixed {
             position: fixed;
             top: 0;
