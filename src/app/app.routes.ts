@@ -18,6 +18,7 @@ export const routes: Routes = [
         path: '**',
         loadComponent: () => import('./pages/not-found-page/not-found-page.component')
     },
+    // exemple de guard quand j'en aurai l'utilité
     // {
     //     path: 'admin',
     //     loadComponent: () => import('./pages/admin-page/admin-page.component'),
