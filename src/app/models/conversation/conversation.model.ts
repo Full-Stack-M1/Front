@@ -1,17 +1,19 @@
 import { Message } from "../message/message.model";
-import { User } from "../user/user.model";
+import { userRef } from "../user/user.model";
 
 export interface Conversation {
     id: number;
     name: string;
     messages: Message[];
     createdAt: string;
-    createdBy: User;
+    createdBy: userRef;
     tag: ConversationTag;
     type: ConversationType[];
 }
 
 export type ConversationSearch = Partial<Pick<Conversation, 'name' | 'tag' | 'type'>>;
+
+export type ConversationFun = Partial<Pick<Conversation, 'name' | 'messages' | 'createdAt' | 'createdBy'>>;
 
 export enum ConversationTag {
     NEW = 'New',

@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="header">
+        <h1>{{conversation.name}}</h1>
+        <p>{{conversation.createdAt}} by {{conversation.createdBy?.id}}</p>
+    </div>
+    <ul class="message-list">
+        <!-- Example message -->
+        @for (message of conversation.messages; track $index) {
+            <li class="message">
+                <app-message-card [message]="message"></app-message-card>
+            </li>
+        }
+    </ul>
+</div>

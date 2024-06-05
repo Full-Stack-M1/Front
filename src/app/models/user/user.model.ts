@@ -6,3 +6,7 @@ export interface User {
 }
 
 export type UserLogin = Omit<User, 'email' | 'id'>;
+
+export type UserRegister = Omit<User, 'id'>;
+
+export type userRef = Pick<User, 'id'>;

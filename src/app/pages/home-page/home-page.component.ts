@@ -10,8 +10,8 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './home-page.component.scss'
 })
 export default class HomePageComponent {
-  private authservice: AuthService = inject(AuthService);
-  ngonicOnInit() {
-    console.log(this.authservice.getIsAuthenticated());
-  }
+  // private authservice: AuthService = inject(AuthService);
+  // ngonicOnInit() {
+  //   console.log(this.authservice.getIsAuthenticated());
+  // }
 }

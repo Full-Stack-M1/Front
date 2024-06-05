@@ -1,0 +1,23 @@
+<div class="container">
+    <h1>Liste des Conversations</h1>
+    <div class="conversation-list">
+        @for (item of conversations; track $index) {
+            <app-conversations-card [conversation]="item"></app-conversations-card>
+        }
+        <!-- <div class="conversation-item">
+            <h3 class="conversation-title">Titre de la Conversation</h3>
+            <p class="conversation-author">Créé par: Auteur</p>
+            <p class="conversation-date">Date: 01/10/2021</p>
+        </div>
+        <div class="conversation-item">
+            <h3 class="conversation-title">Titre de la Conversation</h3>
+            <p class="conversation-author">Créé par: Auteur</p>
+            <p class="conversation-date">Date: 01/10/2021</p>
+        </div>
+        <div class="conversation-item">
+            <h3 class="conversation-title">Titre de la Conversation</h3>
+            <p class="conversation-author">Créé par: Auteur</p>
+            <p class="conversation-date">Date: 01/10/2021</p>
+        </div> -->
+    </div>
+</div>

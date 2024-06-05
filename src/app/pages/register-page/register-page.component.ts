@@ -29,6 +29,8 @@ export default class RegisterPageComponent {
     this.authService.login();
 
     // appel api pour créer compte et connecter le compte
+    // TODO API
+    
     this.router.navigate(['/']);
   }
 

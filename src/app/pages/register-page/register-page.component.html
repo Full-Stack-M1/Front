@@ -3,7 +3,7 @@
     <form (ngSubmit)="onSubmit()" #userForm="ngForm">
         <div>
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" [(ngModel)]="user.username" required autocomplete="username">
+            <input type="text" maxlength="20" id="username" name="username" [(ngModel)]="user.username" required autocomplete="username">
         </div>
         <div>
             <label for="email">Email:</label>
@@ -11,7 +11,7 @@
         </div>
         <div>
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" [(ngModel)]="user.password" required autocomplete="new-password">
+            <input type="password" maxlength="20" id="password" name="password" [(ngModel)]="user.password" required autocomplete="new-password">
         </div>
         <div>
             {{ reason !== '' ? "Error: " + reason : '' }}

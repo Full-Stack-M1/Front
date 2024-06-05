@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { UserLogin } from '../../models/user/user.model';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
-import { authGuard } from '../../guards/auth.guard';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -28,6 +27,8 @@ export default class LoginPageComponent {
     this.authService.login();
     
     // appel api pour créer compte et connecter le compte
+    // TODO API
+
     this.router.navigate(['/']);
   }
 

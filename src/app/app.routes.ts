@@ -19,9 +19,18 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/search-page/search-page.component')
     },
     {
+        path: 'conversations',
+        loadComponent: () => import('./pages/conversations-page/conversations-page.component'),
+    },
+    {
+        path: 'conversation/:id',
+        loadComponent: () => import('./pages/conversation-page/conversation-page.component')
+    },
+    {
         path: '**',
         loadComponent: () => import('./pages/not-found-page/not-found-page.component')
-    },
+    }
+    
     // exemple de guard quand j'en aurai l'utilité
     // {
     //     path: 'admin',
