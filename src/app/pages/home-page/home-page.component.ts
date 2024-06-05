@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HeroComponent } from '../../components/hero/hero.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'Home',
@@ -9,5 +10,8 @@ import { HeroComponent } from '../../components/hero/hero.component';
   styleUrl: './home-page.component.scss'
 })
 export default class HomePageComponent {
-
+  private authservice: AuthService = inject(AuthService);
+  ngonicOnInit() {
+    console.log(this.authservice.getIsAuthenticated());
+  }
 }

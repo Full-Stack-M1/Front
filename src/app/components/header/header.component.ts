@@ -1,6 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
 import { LinkButtonComponent } from '../link-button/link-button.component';
+import { AuthService } from '../../services/auth.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'Header',
@@ -10,19 +12,27 @@ import { LinkButtonComponent } from '../link-button/link-button.component';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  title = 'Mate Finder';
-  scrolled = "";
+  private isLoggedSub: Subscription = this.authService.getIsAuthenticated().subscribe(data => this.isLogged = data);
+  
+  public title = 'Mate Finder';
+  public scrolled = "";
+  public isLogged: boolean = true;
+
+  constructor(private authService: AuthService) { } // Injecter le service dans le constructeur (Injection de dépendances
 
   @HostListener('window:scroll', ['$event']) // for window scroll events
-  onScroll(event: any) {
-
-    //if the scroll is greater than 57px, add the class "fixed" to the header
-    if (window.scrollY > 57) {
+  onScroll() {
+    //if the scroll is greater than 50px, add the class "fixed" to the header
+    if (window.scrollY > 50) {
       this.scrolled = "fixed";
     }
     else {
       this.scrolled = "";
     }
     
+  }
+
+  logout() {    
+    this.authService.logout();
   }
 }

@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { UserLogin } from '../../models/user/user.model';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { authGuard } from '../../guards/auth.guard';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'Login',
@@ -13,6 +15,8 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, Validators } from '@a
 export default class LoginPageComponent {
   private router: Router = inject(Router);
   private formbuilder: FormBuilder = inject(FormBuilder);
+  private authService: AuthService = inject(AuthService);
+  
   public user: UserLogin = {username: '', password: ''};
   public reason: string = "";
 
@@ -20,13 +24,16 @@ export default class LoginPageComponent {
     if (!this.validateUser()) {
       return;
     }
-    console.log("connected");
+    console.log("connecting user");
+    this.authService.login();
+    
     // appel api pour créer compte et connecter le compte
     this.router.navigate(['/']);
   }
 
+  // Validators pour créer l'utilisateur
   private validateUser(): boolean {
-    const userForm: FormGroup = this.formbuilder.group({ // même validators que pour le register mais sans l'email
+    const userForm: FormGroup = this.formbuilder.group({ // Validators pour connecter l'utilisateur
       username: new FormControl(this.user.username, [Validators.minLength(3), Validators.maxLength(20)]),
       password: new FormControl(this.user.password, [Validators.minLength(5), Validators.maxLength(20)])
     });
@@ -38,6 +45,7 @@ export default class LoginPageComponent {
     return true;
   }
 
+  // Fonction pour lire les erreurs
   private errorReader(userForm: FormGroup): string {
     if (userForm.controls['username'].status === "INVALID") {
       return "Username must be between 3 and 20 characters";

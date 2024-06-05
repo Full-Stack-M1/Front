@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthenticated:boolean = false;
+  private isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  login() {
-    this.isAuthenticated = true;
+  public login() {
+    this.isAuthenticated$.next(true);
+
+    //gérer le cookie quand fonctionnera
   }
 
-  logout() {
-    this.isAuthenticated = false;
+  public logout() {
+    this.isAuthenticated$.next(false);
   }
 
-  getIsAuthenticated(): boolean {
-    return this.isAuthenticated;
+  public getIsAuthenticated(): Observable<boolean> {
+    return this.isAuthenticated$.asObservable();
   }
 
   constructor() { }

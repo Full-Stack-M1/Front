@@ -1,39 +1,23 @@
 <header class="header__main" [class]="scrolled">
-    <div class="header__left">
-        <!--<Button [text]="" ></Button>-->
-    </div>
+    <div class="header__left" ></div>
     <div class="header__center">
         <LinkButton text="{{title}}"></LinkButton>
     </div>
     <div class="header__right">
+    @if (isLogged) {
+        <div class="header__right__item">
+            <LinkButton text="Logout" (click)="logout()"></LinkButton>
+        </div>
+    }
+    @else {
         <div class="header__right__item">
             <LinkButton text="Login" link="login"></LinkButton>
         </div>
         <div class="header__right__item">
             <LinkButton text="Register" link="register"></LinkButton>
         </div>
+    }
     </div>
-    <!--  
-    <div class="header__right">
-        <div class="header__social">
-            <ul class="social__wrapper">
-                <li class="social__item">
-                    <a href="https://facebook.com" target="_blank">
-                        <svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 7.84091V11.75H3.93182V18.5909H7.84091V11.75H10.7727L11.75 7.84091H7.84091V5.88636C7.84091 5.62717 7.94387 5.3786 8.12715 5.19533C8.31042 5.01205 8.55899 4.90909 8.81818 4.90909H11.75V1H8.81818C7.52224 1 6.27937 1.51481 5.363 2.43118C4.44663 3.34755 3.93182 4.59042 3.93182 5.88636V7.84091H1Z" stroke="#2C3E50" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </a>
-                </li>
-                <li class="social__item">
-                    <a href="https://twitter.com" target="_blank">
-                        <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 1.10031C18.1 1.5447 17.218 1.72518 16.3 1.99816C15.2911 0.850901 13.7953 0.787416 12.358 1.32976C10.9207 1.8721 9.9793 3.19803 10 4.71894V5.62587C7.0795 5.70114 4.4785 4.36071 2.8 1.99816C2.8 1.99816 -0.9638 8.73935 6.4 11.9744C4.7152 13.1053 3.0349 13.868 1 13.7882C3.9772 15.4234 7.2217 15.9857 10.0306 15.164C13.2526 14.2208 15.9004 11.7875 16.9165 8.14259C17.2196 7.03403 17.3701 5.88875 17.3638 4.73889C17.3638 4.51307 18.7228 2.22489 19 1.0994V1.10031Z" stroke="#2C3E50" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    -->
+    
 
 </header>

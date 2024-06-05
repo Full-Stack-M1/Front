@@ -1,0 +1,43 @@
+<div style="height: 100vh;">
+    <div class="container">
+        <form (ngSubmit)="onSearch()">
+            <h1 class="main_text">Recherche</h1>
+
+            <div style="margin-bottom: 20px;">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Recherche</mat-label>
+                    <input matInput type="text" placeholder="Rechercher..." [formControl]="search" />
+                </mat-form-field>
+            </div>
+
+            <div  class="search_list_container">
+                <div class="sub_container">
+                    <h2 style="color: #666; margin-right: 5%;">Types</h2>
+                    <mat-form-field>
+                        <mat-label>Types</mat-label>
+                        <mat-select [formControl]="types" multiple>
+                            @for (type of typeTuple; track type) {
+                                <mat-option [value]="type[0]">{{type[1]}}</mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub_container">
+                    <h2 style="color: #666; margin-right: 5%;">Tags</h2>
+                    <mat-form-field>
+                        <mat-label>Tags</mat-label>
+                        <mat-select [formControl]="tags">
+                            @for (tag of tagList; track tag) {
+                                <mat-option [value]="tag">{{tag}}</mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="button_container">
+                <button type="submit">Recherche</button>
+            </div>
+        </form>
+    </div>
+</div>

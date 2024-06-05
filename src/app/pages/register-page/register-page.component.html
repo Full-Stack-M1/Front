@@ -3,15 +3,18 @@
     <form (ngSubmit)="onSubmit()" #userForm="ngForm">
         <div>
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" [(ngModel)]="user.username" required>
+            <input type="text" id="username" name="username" [(ngModel)]="user.username" required autocomplete="username">
         </div>
         <div>
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
+            <input type="email" id="email" name="email" [(ngModel)]="user.email" required autocomplete="email">
         </div>
         <div>
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" [(ngModel)]="user.password" required>
+            <input type="password" id="password" name="password" [(ngModel)]="user.password" required autocomplete="new-password">
+        </div>
+        <div>
+            {{ reason !== '' ? "Error: " + reason : '' }}
         </div>
         <button type="submit" hidden>Register</button>
     </form>

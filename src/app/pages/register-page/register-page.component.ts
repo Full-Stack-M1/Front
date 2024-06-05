@@ -3,6 +3,7 @@ import { FormsModule, FormControl, Validators, FormBuilder, FormGroup } from '@a
 import { Router } from '@angular/router';
 
 import { User } from '../../models/user/user.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'Register',
@@ -14,6 +15,9 @@ import { User } from '../../models/user/user.model';
 export default class RegisterPageComponent {
   private router: Router = inject(Router);
   private formbuilder: FormBuilder = inject(FormBuilder);
+
+  constructor(private authService: AuthService) { } // Injecter le service dans le constructeur (Injection de dépendances
+
   public user: User = {id: 0, username: '', email: '', password: ''};
   public reason: string = "";
 
@@ -21,13 +25,16 @@ export default class RegisterPageComponent {
     if (!this.validateUser()) {
       return;
     }
-    console.log("connected");
+    console.log("Registering user");
+    this.authService.login();
+
     // appel api pour créer compte et connecter le compte
     this.router.navigate(['/']);
   }
 
+  // Validators pour créer l'utilisateur
   private validateUser(): boolean {
-    const userForm: FormGroup = this.formbuilder.group({ //Validators pour créer l'utilisateur
+    const userForm: FormGroup = this.formbuilder.group({ // Validators pour créer l'utilisateur
       username: new FormControl(this.user.username, [Validators.minLength(3), Validators.maxLength(20)]),
       email: new FormControl(this.user.email, [Validators.email]),
       password: new FormControl(this.user.password, [Validators.minLength(5), Validators.maxLength(20)])
@@ -42,9 +49,13 @@ export default class RegisterPageComponent {
     return true;
   }
 
+  // Fonction pour lire les erreurs
   private errorReader(userForm: FormGroup): string {
     if (userForm.controls['username'].status === "INVALID") {
       return "Username must be between 3 and 20 characters";
+    }
+    if (userForm.controls['email'].status === "INVALID") {
+      return "Email must be a valid email";
     }
     if (userForm.controls['password'].status === "INVALID") {
       return "Password must be between 5 and 20 characters";
