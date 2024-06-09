@@ -1,12 +1,12 @@
 <ng-container>
-    <a [routerLink]="['/conversation', conversation.id]">
+    <a [routerLink]="['/conversation', conversation._id]">
         <mat-card class="conversation-item">
             <mat-card-header>
                 <mat-card-title>{{conversation.name}}</mat-card-title>
             </mat-card-header>
             <mat-card-footer>
                 <div class="footer_container">
-                    <p>créer par {{conversation.createdBy.id}}</p>
+                    <p>créer par {{conversation.createdBy.username}}</p>
                     <p>{{conversation.createdAt}}</p>
                 </div>
             </mat-card-footer>

@@ -1,12 +1,10 @@
 export interface User {
-  id: number;
+  _id: number;
   username: string;
   email: string;
   password: string;
 }
 
-export type UserLogin = Omit<User, 'email' | 'id'>;
+export type UserLogin = Omit<User, 'email' | '_id'>;
 
-export type UserRegister = Omit<User, 'id'>;
-
-export type userRef = Pick<User, 'id'>;
+export type UserRegister = Omit<User, '_id'>;

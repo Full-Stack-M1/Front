@@ -12,7 +12,7 @@ const message: Message = {
     content: 'Hello',
     date: '2021-03-09',
     user: {
-        id: 1,
+        _id: 1,
         username: 'user1',
         email: '',
         password: '',
@@ -25,7 +25,7 @@ export const messages: Message[] = [
         content: 'Hello',
         date: '2021-03-09',
         user: {
-            id: 1,
+            _id: 1,
             username: 'user1',
             email: '',
             password: '',
@@ -36,7 +36,7 @@ export const messages: Message[] = [
         content: 'Hi',
         date: '2021-03-09',
         user: {
-            id: 2,
+            _id: 2,
             username: 'user2',
             email: '',
             password: '',
@@ -47,7 +47,7 @@ export const messages: Message[] = [
         content: 'Hey',
         date: '2021-03-09',
         user: {
-            id: 3,
+            _id: 3,
             username: 'user3',
             email: '',
             password: '',
@@ -58,7 +58,7 @@ export const messages: Message[] = [
         content: 'Bonjour',
         date: '2021-03-09',
         user: {
-            id: 4,
+            _id: 4,
             username: 'user4',
             email: '',
             password: '',
@@ -69,7 +69,7 @@ export const messages: Message[] = [
         content: 'Salut',
         date: '2021-03-09',
         user: {
-            id: 5,
+            _id: 5,
             username: 'user5',
             email: '',
             password: '',
@@ -80,7 +80,7 @@ export const messages: Message[] = [
         content: 'Yo',
         date: '2021-03-09',
         user: {
-            id: 6,
+            _id: 6,
             username: 'user6',
             email: '',
             password: '',
@@ -91,7 +91,7 @@ export const messages: Message[] = [
         content: 'Hola',
         date: '2021-03-09',
         user: {
-            id: 7,
+            _id: 7,
             username: 'user7',
             email: '',
             password: '',
@@ -102,7 +102,7 @@ export const messages: Message[] = [
         content: 'Ciao',
         date: '2021-03-09',
         user: {
-            id: 8,
+            _id: 8,
             username: 'user8',
             email: '',
             password: '',
@@ -113,7 +113,7 @@ export const messages: Message[] = [
         content: 'Hallo',
         date: '2021-03-09',
         user: {
-            id: 9,
+            _id: 9,
             username: 'user9',
             email: '',
             password: '',
@@ -124,7 +124,7 @@ export const messages: Message[] = [
         content: 'Hej',
         date: '2021-03-09',
         user: {
-            id: 10,
+            _id: 10,
             username: 'user10',
             email: '',
             password: '',
@@ -135,7 +135,7 @@ export const messages: Message[] = [
         content: 'Hei',
         date: '2021-03-09',
         user: {
-            id: 11,
+            _id: 11,
             username: 'user11',
             email: '',
             password: '',

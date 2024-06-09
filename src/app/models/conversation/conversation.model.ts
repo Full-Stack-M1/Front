@@ -1,12 +1,12 @@
 import { Message } from "../message/message.model";
-import { userRef } from "../user/user.model";
+import { User } from "../user/user.model";
 
 export interface Conversation {
-    id: number;
+    _id?: string;
     name: string;
     messages: Message[];
     createdAt: string;
-    createdBy: userRef;
+    createdBy: User;
     tag: ConversationTag;
     type: ConversationType[];
 }

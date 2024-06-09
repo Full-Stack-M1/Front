@@ -5,6 +5,7 @@
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    height: auto;
 }
 .header {
     text-align: center;
@@ -25,4 +26,13 @@
 }
 .message:last-child {
     border-bottom: none;
+}
+.messageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.messageBar {
+    align-self: flex-end;
 }

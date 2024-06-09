@@ -3,6 +3,9 @@ import { UserLogin } from '../../models/user/user.model';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { AuthRequestService } from '../../services/authRequest.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Response } from '../../models/response/response.model';
 
 @Component({
   selector: 'Login',
@@ -15,6 +18,7 @@ export default class LoginPageComponent {
   private router: Router = inject(Router);
   private formbuilder: FormBuilder = inject(FormBuilder);
   private authService: AuthService = inject(AuthService);
+  private authRequest: AuthRequestService = inject(AuthRequestService);
   
   public user: UserLogin = {username: '', password: ''};
   public reason: string = "";
@@ -23,13 +27,19 @@ export default class LoginPageComponent {
     if (!this.validateUser()) {
       return;
     }
-    console.log("connecting user");
-    this.authService.login();
-    
-    // appel api pour créer compte et connecter le compte
-    // TODO API
-
-    this.router.navigate(['/']);
+    this.authRequest.login(this.user).subscribe(
+      (response: Response) => {
+        console.log(response);
+        
+        console.log("User connected", response);
+        this.authService.login(response.token!);
+        this.router.navigate(['/']);
+      },
+      (error: HttpErrorResponse) => {
+        this.reason = error.error.message;
+        console.error("Error connecting user", error);
+      }
+    );
   }
 
   // Validators pour créer l'utilisateur

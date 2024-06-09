@@ -2,8 +2,11 @@ import { Component, inject } from '@angular/core';
 import { FormsModule, FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { User } from '../../models/user/user.model';
+import { UserRegister } from '../../models/user/user.model';
 import { AuthService } from '../../services/auth.service';
+import { AuthRequestService } from '../../services/authRequest.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Response } from '../../models/response/response.model';
 
 @Component({
   selector: 'Register',
@@ -15,10 +18,10 @@ import { AuthService } from '../../services/auth.service';
 export default class RegisterPageComponent {
   private router: Router = inject(Router);
   private formbuilder: FormBuilder = inject(FormBuilder);
+  private authService: AuthService = inject(AuthService);
+  private authRequest: AuthRequestService = inject(AuthRequestService);
 
-  constructor(private authService: AuthService) { } // Injecter le service dans le constructeur (Injection de dépendances
-
-  public user: User = {id: 0, username: '', email: '', password: ''};
+  public user: UserRegister = {username: '', email: '', password: ''};
   public reason: string = "";
 
   onSubmit(): void {
@@ -26,11 +29,17 @@ export default class RegisterPageComponent {
       return;
     }
     console.log("Registering user");
-    this.authService.login();
-
-    // appel api pour créer compte et connecter le compte
-    // TODO API
-    
+    this.authRequest.register(this.user).subscribe(
+      (response: Response) => {
+        console.log(response);
+        
+        console.log("User registered", response);
+        this.authService.login(response.token!);
+      },
+      (error: HttpErrorResponse) => {
+        console.error("Error registering user", error);
+      }
+    );
     this.router.navigate(['/']);
   }
 

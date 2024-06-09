@@ -10,4 +10,8 @@ import { Message } from '../../models/message/message.model';
 })
 export class MessageCardComponent {
   @Input() message!: Message;
+
+  ngOnInit() {
+    console.log(this.message);
+  }
 }
