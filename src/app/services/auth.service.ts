@@ -10,7 +10,6 @@ export class AuthService {
 
   public login(token: string) {
     this.isAuthenticated$.next(true);
-    this.token = token;
     localStorage.setItem('token', token);
 
     //gérer le cookie quand fonctionnera
@@ -18,15 +17,11 @@ export class AuthService {
 
   public logout() {
     this.isAuthenticated$.next(false);
-    this.token = '';
+    localStorage.removeItem('token');
   }
 
   public getIsAuthenticated(): Observable<boolean> {
     return this.isAuthenticated$.asObservable();
-  }
-
-  public getToken(): string {
-    return this.token;
   }
 
   constructor() { }

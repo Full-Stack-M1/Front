@@ -13,7 +13,7 @@ export class AuthRequestService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     
   }
-  private apiUrl = 'http://localhost:8080/api/auth/';
+  private apiUrl = 'https://back-p54j.onrender.com/api/auth/';
 
   constructor(private httpClient: HttpClient) {  }
 
@@ -23,7 +23,12 @@ export class AuthRequestService {
     //return this.http.post<User>(this.apiUrl, user, this.httpOptions)
   }
 
-    login(user: UserLogin): Observable<Response> {
-        return this.httpClient.post<Response>(this.apiUrl + 'login', user, this.httpOptions)
-    }
+  login(user: UserLogin): Observable<Response> {
+      return this.httpClient.post<Response>(this.apiUrl + 'login', user, this.httpOptions)
+  }
+
+  getMe(): Observable<Response> {
+    this.httpOptions.headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token')});
+    return this.httpClient.get<Response>(this.apiUrl + 'me', this.httpOptions)
+  }
 }

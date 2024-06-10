@@ -4,19 +4,30 @@
         <LinkButton text="{{title}}"></LinkButton>
     </div>
     <div class="header__right">
-    @if (isLogged) {
-        <div class="header__right__item">
-            <LinkButton text="Logout" (click)="logout()"></LinkButton>
-        </div>
-    }
-    @else {
-        <div class="header__right__item">
-            <LinkButton text="Login" link="login"></LinkButton>
-        </div>
-        <div class="header__right__item">
-            <LinkButton text="Register" link="register"></LinkButton>
-        </div>
-    }
+        @defer (when loaded()) {
+            @if (isLogged) {
+                <div>
+                    <p>Bonjour, {{user!.username}}</p>
+                </div>
+                <div class="header__right__item">
+                    <LinkButton text="Logout" (click)="logout()"></LinkButton>
+                </div>
+            }
+            @else {
+                <div class="header__right__item">
+                    <LinkButton text="Login" link="login"></LinkButton>
+                </div>
+                <div class="header__right__item">
+                    <LinkButton text="Register" link="register"></LinkButton>
+                </div>
+            }
+        }
+        @loading {
+            <div class="header__right__item">
+                <LinkButton text="Loading..."></LinkButton>
+            </div>
+        }
+    
     </div>
     
 

@@ -10,7 +10,7 @@ export class MessageRequestService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token')})
   };
-  private apiUrl = 'http://localhost:8080/api/message/';
+  private apiUrl = 'https://back-p54j.onrender.com/api/message/';
 
   constructor(private httpClient: HttpClient) {  }
 
