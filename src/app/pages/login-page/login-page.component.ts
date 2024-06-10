@@ -29,9 +29,6 @@ export default class LoginPageComponent {
     }
     this.authRequest.login(this.user).subscribe(
       (response: Response) => {
-        console.log(response);
-        
-        console.log("User connected", response);
         this.authService.login(response.token!);
         this.router.navigate(['/']);
       },

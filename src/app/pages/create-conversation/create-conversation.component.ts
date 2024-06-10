@@ -35,8 +35,7 @@ export default class CreateConversationComponent {
       tag: this.tag.getRawValue() as unknown as ConversationTag,
       name: this.name.getRawValue() as unknown as string,
     };
-    console.log(conversation);
-
+    
     this.convService.create(conversation).subscribe(
       (response: Response) => {
         this.router.navigate(['/conversation', response.conversation!._id])

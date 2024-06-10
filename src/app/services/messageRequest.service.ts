@@ -15,11 +15,6 @@ export class MessageRequestService {
   constructor(private httpClient: HttpClient) {  }
 
   createMessage(convId: string, content: string): Observable<Response> {
-    console.log(this.httpOptions);
-    console.log(this.apiUrl + convId);
-    console.log(content);
-    
-    
     return this.httpClient.post<Response>(this.apiUrl + convId, {content}, this.httpOptions)
   }
 }

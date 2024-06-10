@@ -28,12 +28,8 @@ export default class RegisterPageComponent {
     if (!this.validateUser()) {
       return;
     }
-    console.log("Registering user");
     this.authRequest.register(this.user).subscribe(
       (response: Response) => {
-        console.log(response);
-        
-        console.log("User registered", response);
         this.authService.login(response.token!);
       },
       (error: HttpErrorResponse) => {
@@ -53,8 +49,6 @@ export default class RegisterPageComponent {
 
     if (userForm.status === "INVALID") {
       this.reason = this.errorReader(userForm);
-      console.log(userForm);
-      
       return false;
     }
     return true;

@@ -18,20 +18,14 @@ export class ConvRequestService {
   constructor(private httpClient: HttpClient) {  }
 
   getAll(): Observable<Response> {
-    console.log(this.httpOptions);
-    
     return this.httpClient.get<Response>(this.apiUrl, this.httpOptions)
   }
 
   getOne(id: string): Observable<Response> {
-    console.log(this.apiUrl + id);
-    
     return this.httpClient.get<Response>(this.apiUrl + id, this.httpOptions)
   }
 
   getBySearch(searchParams: ConversationSearch): Observable<Response> {
-    console.log(this.apiUrl + 'search');
-    console.log(searchParams);
     return this.httpClient.post<Response>(this.apiUrl + 'search', searchParams, this.httpOptions);
   }
 
@@ -40,7 +34,6 @@ export class ConvRequestService {
   }
 
   create(createParam: ConversationCreate): Observable<Response> {
-    console.log(createParam);
     return this.httpClient.post<Response>(this.apiUrl, createParam, this.httpOptions);
   }
 }

@@ -28,8 +28,6 @@ export default class ConversationsPageComponent {
         tag: params['tag']
       };
 
-      console.log(this.convRequest.getBySearch(searchParams));
-      
       this.convRequest.getBySearch(searchParams).subscribe(
         (response: Response) => {
           this.conversations = response.conversations!;

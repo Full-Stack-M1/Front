@@ -16,7 +16,6 @@ import { ConvRequestService } from '../../services/convRequest.service';
 })
 export default class SearchPageComponent {
   private router: Router = inject(Router);
-  private convService: ConvRequestService = inject(ConvRequestService);
 
   public search = new FormControl('');
 
@@ -36,10 +35,6 @@ export default class SearchPageComponent {
       tag: this.tags.getRawValue() as unknown as ConversationTag
     };
 
-    console.log(searchParams);
-
-    // this.convService.getBySearch(searchParams);
-      
     this.router.navigate(['/conversations'], { queryParams: searchParams });
   }
 }
