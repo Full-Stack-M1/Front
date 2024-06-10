@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 // import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -16,19 +17,23 @@ export const routes: Routes = [
     },
     {
         path: 'search',
-        loadComponent: () => import('./pages/search-page/search-page.component')
+        loadComponent: () => import('./pages/search-page/search-page.component'),
+        canActivate: [authGuard]
     },
     {
         path: 'conversations',
         loadComponent: () => import('./pages/conversations-page/conversations-page.component'),
+        canActivate: [authGuard]
     },
     {
         path: 'create-conversation',
-        loadComponent: () => import('./pages/create-conversation/create-conversation.component')
+        loadComponent: () => import('./pages/create-conversation/create-conversation.component'),
+        canActivate: [authGuard]
     },
     {
         path: 'conversation/:id',
-        loadComponent: () => import('./pages/conversation-page/conversation-page.component')
+        loadComponent: () => import('./pages/conversation-page/conversation-page.component'),
+        canActivate: [authGuard]
     },
     {
         path: '**',

@@ -41,13 +41,17 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    this.authReqService.getMe().subscribe(
-      (response: Response) => {
-        this.user =  response.user!;
-        this.user.username = this.capitalizeFirstLetter(this.user.username);
-        this.loaded.set(true);
-      }
-    );
+    const token = localStorage.getItem('token');
+    if (token !== null) {
+      this.authReqService.getMe().subscribe(
+        (response: Response) => {
+          this.user =  response.user!;
+          this.user.username = this.capitalizeFirstLetter(this.user.username);
+          this.loaded.set(true);
+        }
+      );
+    }
+    
   }
 
   logout() {    
