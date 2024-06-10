@@ -38,7 +38,6 @@ export default class SearchPageComponent {
 
     this.router.navigate(['/conversations']);
     
-
     // Call search service with search params
     // TODO API
   }

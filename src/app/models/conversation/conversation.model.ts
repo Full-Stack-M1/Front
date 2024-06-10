@@ -15,6 +15,8 @@ export type ConversationSearch = Partial<Pick<Conversation, 'name' | 'tag' | 'ty
 
 export type ConversationFun = Partial<Pick<Conversation, 'name' | 'messages' | 'createdAt' | 'createdBy'>>;
 
+export type ConversationCreate = Pick<Conversation, 'name' | 'tag' | 'type'>;
+
 export enum ConversationTag {
     NEW = 'New',
     ACTIVE = 'Active',

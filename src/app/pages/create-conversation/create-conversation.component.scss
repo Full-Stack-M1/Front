@@ -1,0 +1,30 @@
+.container {
+    max-width: 600px;
+    min-height: auto;
+    height: auto;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 5%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.sub_container {
+    margin-bottom: 20px;
+    width: 45%;
+    display: flex;
+}
+
+.search_list_container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    width: 600px;
+}

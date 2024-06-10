@@ -22,8 +22,7 @@ private router: Router = inject(Router);
   sendMessage() {
     if (this.message.trim()) {
       this.messageRequest.createMessage(this.conversationId, this.message).subscribe(
-        (response: Response) => {
-          console.log(response);
+        () => {
           this.reloadEmitter.emit(true);
           this.router.navigate(['/conversation/' + this.conversationId]);
         }

@@ -4,17 +4,18 @@ import { ConversationsCardComponent } from '../../components/conversations-card/
 import { ConvRequestService } from '../../services/convRequest.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Response } from '../../models/response/response.model';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-conversations-page',
   standalone: true,
-  imports: [ConversationsCardComponent],
+  imports: [ConversationsCardComponent,RouterLink ,RouterLinkActive, MatButtonModule],
   templateUrl: './conversations-page.component.html',
   styleUrl: './conversations-page.component.scss'
 })
 export default class ConversationsPageComponent {
   private convRequest: ConvRequestService = inject(ConvRequestService);
-  // public conversations: Conversation[] = [
   //   {
   //     id: 1,
   //     name: 'Blocbuster',
@@ -118,13 +119,18 @@ export default class ConversationsPageComponent {
   conversations: Conversation[] = [];
   
   ngOnInit() {
-    this.convRequest.getAll().subscribe(
-      (response: Response) => {
-        this.conversations = response.conversations!;
-      },
-      (error: HttpErrorResponse) => {
-        console.error("Error getting conversations", error);
-      }
-    );
+    if (this.convRequest.getSearchedConversation() === undefined) {
+      this.convRequest.getAll().subscribe(
+        (response: Response) => {
+          this.conversations = response.conversations!;
+        },
+        (error: HttpErrorResponse) => {
+          console.error("Error getting conversations", error);
+        }
+      );
+    }
+    else {
+      this.conversations = this.convRequest.getSearchedConversation()!;
+    }
   }
 }

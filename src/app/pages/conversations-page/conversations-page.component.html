@@ -1,5 +1,9 @@
 <div class="container">
     <h1>Liste des Conversations</h1>
+    <div>
+        <p>Il n'y a pas ce que tu recherches ?</p>
+        <a mat-stroked-button routerLink="/create-conversation" routerLinkActive="active" ariaCurrentWhenActive="page" class="button">Créer une conversation</a>
+    </div>
     <div class="conversation-list">
         @for (item of conversations; track $index) {
             <app-conversations-card [conversation]="item"></app-conversations-card>

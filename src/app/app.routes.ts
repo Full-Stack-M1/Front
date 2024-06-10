@@ -23,6 +23,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/conversations-page/conversations-page.component'),
     },
     {
+        path: 'create-conversation',
+        loadComponent: () => import('./pages/create-conversation/create-conversation.component')
+    },
+    {
         path: 'conversation/:id',
         loadComponent: () => import('./pages/conversation-page/conversation-page.component')
     },

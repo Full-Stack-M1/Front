@@ -1,16 +1,23 @@
 <div class="container">
-    <div class="header">
-        <h1>{{conversation.name}}</h1>
-        <p>Created the {{conversation.createdAt}} by {{conversation.createdBy?.username}}</p>
-    </div>
-    <div class="messageContainer">
-        <ul class="message-list">
-            @for (message of conversation.messages; track $index) {
-                <li class="message">
-                    <app-message-card [message]="message"></app-message-card>
-                </li>
-            }
-        </ul>
-        <app-message-bar conversationId="{{conversation._id}}" (reloadEmitter)="reloadMessages()"></app-message-bar>
-    </div>
+    @defer (when loaded()) {
+        <div class="header">
+            <h1>{{conversation!.name}}</h1>
+            <p>Created the {{conversation!.createdAt}} by {{conversation!.createdBy!.username}}</p>
+        </div>
+        <div class="messageContainer">
+            <ul class="message-list">
+                @for (message of conversation!.messages; track $index) {
+                    <li class="message">
+                        <app-message-card [message]="message"></app-message-card>
+                    </li>
+                }
+                
+            </ul>
+            <app-message-bar conversationId="{{conversation!._id}}" (reloadEmitter)="reloadMessages()"></app-message-bar>
+        </div>
+    }
+    @loading {
+        <p>Récupèration des informations de la conversation</p>
+    }
+    
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -22,30 +22,20 @@ export default class ConversationPageComponent implements OnInit {
   private convRequest: ConvRequestService = inject(ConvRequestService);
 
   private conversationId: string = this.route.snapshot.paramMap.get('id')!;
-  public conversation: Conversation = { messages: [], name: 'Conversation', createdAt: '2021-10-01', createdBy: { _id: 1, username: 'User', email: '', password: ''}, tag: ConversationTag.NEW, type: [ConversationType.BLOC]};
+  public conversation?: Conversation;
+  public loaded = signal(false);
   // public conversation: ConversationFun = { messages: messages, name: 'Conversation', createdAt: '2021-10-01', createdBy: { _id: 1, username: 'User', email: '', password: ''}};
 
   ngOnInit() {
-    this.convRequest.getOne(this.conversationId).subscribe(
-      (response: Response) => {
-        this.conversation = response.conversation!;
-        console.log(response);
-        this.conversation.createdAt = new Date(this.conversation.createdAt).toLocaleDateString();
-        console.log(this.conversation);
-      },
-      (error: HttpErrorResponse) => {
-        console.error("Error getting conversation", error);
-      }
-    );
+    this.reloadMessages();
   }
 
   reloadMessages() {
     this.convRequest.getOne(this.conversationId).subscribe(
       (response: Response) => {
         this.conversation = response.conversation!;
-        console.log(response);
         this.conversation.createdAt = new Date(this.conversation.createdAt).toLocaleDateString();
-        console.log(this.conversation);
+        this.loaded.set(true);
       },
       (error: HttpErrorResponse) => {
         console.error("Error getting conversation", error);

@@ -1,15 +1,13 @@
 <div style="height: 100vh;">
     <div class="container">
-        <form (ngSubmit)="onSearch()">
-            <h1 class="main_text">Recherche</h1>
-
+        <form (ngSubmit)="onCreate()">
             <div style="margin-bottom: 20px;">
                 <mat-form-field appearance="outline" style="width: 100%;">
-                    <mat-label>Recherchez un topic</mat-label>
-                    <input matInput type="text" placeholder="Rechercher..." [formControl]="search" />
+                    <mat-label>Nom du post</mat-label>
+                    <input matInput type="text" placeholder="Super nom" [formControl]="name" maxlength="50" />
+                    <mat-hint align="end">{{name.value?.length}} / 50</mat-hint>
                 </mat-form-field>
             </div>
-
             <div  class="search_list_container">
                 <div class="sub_container">
                     <h2 style="color: #666; margin-right: 5%;">Types</h2>
@@ -27,7 +25,7 @@
                     <h2 style="color: #666; margin-right: 5%;">Tags</h2>
                     <mat-form-field>
                         <mat-label>Tags</mat-label>
-                        <mat-select [formControl]="tags">
+                            <mat-select [formControl]="tag">
                             @for (tag of tagList; track tag) {
                                 <mat-option [value]="tag">{{tag}}</mat-option>
                             }
@@ -35,8 +33,8 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div class="button_container">
-                <button type="submit">Recherche</button>
+            <div class="buttonContainer">
+                <button type="submit">Créer le post</button>
             </div>
         </form>
     </div>

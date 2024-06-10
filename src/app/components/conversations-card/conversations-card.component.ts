@@ -16,8 +16,5 @@ export class ConversationsCardComponent {
 
   ngOnInit() {
     this.conversation.createdAt = new Date(this.conversation.createdAt).toLocaleDateString();
-    console.log(this.conversation);
-    console.log(this.conversation.messages);
-    console.log(this.conversation.createdBy);
   }
 }
