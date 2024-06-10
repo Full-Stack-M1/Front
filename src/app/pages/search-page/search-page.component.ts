@@ -5,6 +5,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ConversationSearch, ConversationTag, ConversationType } from '../../models/conversation/conversation.model';
 import { Router } from '@angular/router';
+import { ConvRequestService } from '../../services/convRequest.service';
 
 @Component({
   selector: 'app-search-page',
@@ -15,6 +16,7 @@ import { Router } from '@angular/router';
 })
 export default class SearchPageComponent {
   private router: Router = inject(Router);
+  private convService: ConvRequestService = inject(ConvRequestService);
 
   public search = new FormControl('');
 
@@ -36,9 +38,8 @@ export default class SearchPageComponent {
 
     console.log(searchParams);
 
-    this.router.navigate(['/conversations']);
-    
-    // Call search service with search params
-    // TODO API
+    // this.convService.getBySearch(searchParams);
+      
+    this.router.navigate(['/conversations'], { queryParams: searchParams });
   }
 }

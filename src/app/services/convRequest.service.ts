@@ -29,14 +29,10 @@ export class ConvRequestService {
     return this.httpClient.get<Response>(this.apiUrl + id, this.httpOptions)
   }
 
-  getOneBySearch(searchParams: ConversationSearch): void {
+  getBySearch(searchParams: ConversationSearch): Observable<Response> {
     console.log(this.apiUrl + 'search');
     console.log(searchParams);
-    this.httpClient.post<Response>(this.apiUrl + 'search', searchParams, this.httpOptions).subscribe(
-      (response: Response) => {
-        this.searchedConversation = response.conversations;
-      }
-    )
+    return this.httpClient.post<Response>(this.apiUrl + 'search', searchParams, this.httpOptions);
   }
 
   getSearchedConversation(): Conversation[] | undefined {
